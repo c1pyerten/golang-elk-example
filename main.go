@@ -1,7 +1,9 @@
 package main
 
 import (
+	"math/rand"
 	"os"
+	"strconv"
 	"time"
 
 	ginzap "github.com/gin-contrib/zap"
@@ -37,6 +39,8 @@ func main() {
 	r.Use(ginzap.RecoveryWithZap(logger, true))
 
 	r.GET("/ping", func(c *gin.Context) {
+		logger.Info("my own info", zap.Int64("key", rand.Int63()))
+		logger.Error("myerrror level", zap.Int64("key", rand.Int63()), zap.String("ran", "my"+strconv.Itoa(rand.Int())))
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})

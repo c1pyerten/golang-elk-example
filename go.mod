@@ -1,6 +1,6 @@
-module github.com/leozz37/golang-elk-example
+module github.com/c1pyerten/golang-elk-example
 
-go 1.16
+go 1.20
 
 require (
 	github.com/gin-contrib/zap v0.0.1
