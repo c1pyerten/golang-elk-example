@@ -14,10 +14,13 @@ const logPath = "./logs/go.log"
 var logger *zap.Logger
 
 func setupLog() {
-	os.OpenFile(logPath, os.O_RDONLY|os.O_CREATE, 0666)
+	var err error
+	_, err = os.OpenFile(logPath, os.O_RDONLY|os.O_CREATE, 0666)
+	if err != nil {
+		panic(err)
+	}
 	c := zap.NewProductionConfig()
 	c.OutputPaths = []string{"stdout", logPath}
-	var err error
 	logger, err = c.Build()
 	if err != nil {
 		panic(err)
